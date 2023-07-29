@@ -11,7 +11,7 @@ const CodeList = (props) =>{
         navigate(`/codeblock/${codeBlockItem}`);
     }
 
-    return (
+    return (//mapping the codeblock names to a list of buttons
         <div>
         <ul>
         {

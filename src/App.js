@@ -11,22 +11,23 @@ function App() {
   const [codesSolObj, setCodesSolObj] = useState({});
 
   useEffect(()=>{
-    fetch('https://be-codeblockapp-aded7327a22d.herokuapp.com/getCodeBlocks').then(response => {
+    fetch('https://be-codeblockapp-aded7327a22d.herokuapp.com/getCodeBlocks').then(response => { //getting all the codeblocks
          if(!response.ok){
              throw new Error('Error with CodeBlock List response');
          }
          return response.json();
     }).then(data => {
-      console.log(data)
+      console.log(data); // logging the data so we'll be able to see the solutions if we want :)
       const codesObject = {};
       const codesSolObject = {};
-      for (const item of data) {
+      for (const item of data) { //building the objects both codes and solutions
         codesObject[item.title] = item.code;
         codesSolObject[item.title] = item.solution;
       }
      
       setCodesObj(codesObject);
       setCodesSolObj(codesSolObject);
+      
     }).catch(error => {
         console.log(error);
     })

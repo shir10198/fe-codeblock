@@ -10,10 +10,10 @@ const socket = io('https://be-codeblockapp-aded7327a22d.herokuapp.com/');
 
 const CodeBlockItem = (props) => {
   const {codesObj,setCodesObj,codesSolObj} = props;
-  const { codeItem } = useParams();
+  const { codeItem } = useParams(); // code item from the url
   const navigate = useNavigate();
 
-  const [editorValue, setEditorValue] = useState(codesObj[codeItem]);
+  const [editorValue, setEditorValue] = useState(codesObj[codeItem]); // holds the code state
   const [readOnly, setReadOnly] = useState(false);
 
   useEffect(() => {
@@ -94,22 +94,23 @@ const CodeBlockItem = (props) => {
 
       // Clear the timeout reference after the post request is made
       timeoutRef.current = null;
-    }, 3000); // 10 seconds
+    }, 3000); // 3 seconds
   };
 
-  const backToLobbyHandler = () => {
+  const backToLobbyHandler = () => { //navigate to homepage
     navigate('/');
   }
 
+  //Reduce rerenders
   const debouncedHandleTextChange = useRef(
     debounce(handleTextChange, 500)
   ).current;
-
+    //also to reduce rerenders
   useEffect(() => {
     setEditorValue(codesObj[codeItem]);
   }, [codesObj, codeItem]);
 
-  const isWinner = codesSolObj[codeItem] === codesObj[codeItem];
+  const isWinner = codesSolObj[codeItem] === codesObj[codeItem];//does code equals to solution?
   let winnerMessage = '';
   if(isWinner){
     winnerMessage = <div><h2>You got the solution you little genius!</h2> <img alt="smiley" src="https://images.template.net/99504/free-smiley-face-clipart-r05sr.jpg"/></div>;
