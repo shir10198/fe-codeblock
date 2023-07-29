@@ -102,7 +102,7 @@ const CodeBlockItem = (props) => {
   }
 
   const debouncedHandleTextChange = useRef(
-    debounce(handleTextChange, 300)
+    debounce(handleTextChange, 500)
   ).current;
 
   useEffect(() => {
